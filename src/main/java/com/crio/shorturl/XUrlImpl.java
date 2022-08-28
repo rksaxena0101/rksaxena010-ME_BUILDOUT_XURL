@@ -47,8 +47,6 @@ public class XUrlImpl implements XUrl {
     @Override
     public String delete(String longUrl) {
         String shortUrl = map.getOrDefault(longUrl,null);
-        //System.out.println("inside delete:- "+shortUrl);inside delete:- http://short.url/test2
-
         map.remove(longUrl);
         map.put(null, shortUrl);
         mapNew.put(shortUrl, null);
