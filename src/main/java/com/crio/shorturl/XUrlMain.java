@@ -23,6 +23,7 @@ public class XUrlMain {
     // Update new URL mapping to a custom short URL
     String url5 = xUrl.registerNewUrl("http://abc5.com", "http://short.url/test1");
     String url6 = xUrl.registerNewUrl("http://abc6.com", "http://short.url/test2");
+    //System.out.println("registerNewURL:- "+url6);
     // Try to update new URL to map to existing short URL, should return null
     String urlNull = xUrl.registerNewUrl("http://abc7.com", url3);
     assert(urlNull == null);
@@ -33,6 +34,7 @@ public class XUrlMain {
 
     // Test out longURL lookup based on the shortURL input
     assert(xUrl.getUrl(url).equals("http://abc.com"));
+    // System.out.println("Url4 "+xUrl.getUrl(url4)+" "+xUrl.getUrl(url2));
     assert(xUrl.getUrl(url2).equals(xUrl.getUrl(url4)));
     assert(xUrl.getUrl(url5).equals("http://abc5.com"));
     
@@ -44,12 +46,13 @@ public class XUrlMain {
 
     // From the short URL url1, remove the common section (http://short.url/) and remove any non alphanumeric character
     String choppedUrl = url1.replace("http://short.url/", "").replaceAll("[^A-Za-z0-9]", "");
-    System.out.println(choppedUrl);
+    //System.out.println(choppedUrl);
     // The result should have only alphanumeric characters and be 9 characters long
     assert (choppedUrl.length() == 9);
 
     // Delete mapping for the long URL and confirm that the short URL lookup for that long URL returns null
     xUrl.delete("http://abc6.com");
+    System.out.println("URL6:- "+url6);
     assert(xUrl.getUrl(url6) == null);
   }
 }
